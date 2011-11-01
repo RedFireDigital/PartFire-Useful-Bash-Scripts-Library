@@ -1,0 +1,27 @@
+#!/bin/bash
+ADDRESSES=("partfire.co.uk" "google.com" "facebook.com" "github.com" "microsoft.com" )
+
+# get array length
+aLength=${#ADDRESSES[@]}
+
+for (( i=0; i<${aLength}; i++));
+do
+        wget -q -O /tmp/index.${ADDRESSES[$i]} --tries=2 --timeout=3 ${ADDRESSES[$i]} &> /dev/null
+        wait $!
+
+        if [ ! -s /tmp/index.${ADDRESSES[$i]} ];then
+                wget -q -O /tmp/index.${ADDRESSES[$i]} --tries=2 --timeout=3 https://${ADDRESSES[$i]} &> /dev/null
+                wait $!
+fi
+done
+
+for (( i=0; i<${aLength}; i++));
+do
+        if [ ! -s /tmp/index.${ADDRESSES[$i]} ];then
+                echo ${ADDRESSES[$i]} " Failed"
+        else
+                echo ${ADDRESSES[$i]} " Success"
+                rm -rf /tmp/index.${ADDRESSES[$i]}
+fi
+
+done

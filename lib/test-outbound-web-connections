@@ -1,4 +1,26 @@
 #!/bin/bash
+
+#===================================================================================
+#
+#	FILE: test-outbound-web-connections.sh
+#
+#	USAGE: ---
+#
+#	DESCRIPTION: Performs a wget on each of the domains listed
+#	in the ADDRESSES array below
+#
+#	OPTIONS: ---
+#	REQUIREMENTS: ---
+#	BUGS: ---
+#	NOTES: ---
+#	AUTHOR: PartFire LTD, hello@partfire.co.uk
+#	COMPANY: PartFire LTD, LIVERPOOL, UK
+#	VERSION: 1.0
+#	CREATED: 05.07.2010 - 15:28:56
+#	REVISION: ---
+#===================================================================================
+
+
 ADDRESSES=("partfire.co.uk" "google.com" "facebook.com" "github.com" "microsoft.com" )
 
 # get array length
